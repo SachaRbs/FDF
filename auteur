@@ -1,0 +1,35 @@
+sarobber
+
+
+    char    *line;
+    t_point *begin;
+    t_point *point;
+    char    **grille;
+    int     x;
+    int     y;
+    int     z;
+
+    y = 0;
+    z = 0;
+    point = init_point();
+    begin = point;
+    while (get_next_line(fd, &line) == 1)
+    {
+        grille = ft_strsplit(line, ' ');
+        x = 0;
+        y++;
+        while (grille[x])
+        {
+            point->x = x;
+            point->y = y;
+            point->z = ft_atoi(grille[x]);
+            point->next = init_point();
+            point = point->next;
+            x++;
+        }
+		map->len_x = x;
+        free(line);
+    }
+	map->len_y = y;
+	printf("%d\n%d\n", map->len_x, map->len_y);
+    return (begin);
