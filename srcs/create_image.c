@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   create_image.c                                   .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: sarobber <sarobber@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/16 13:36:34 by sarobber     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/25 18:05:57 by sarobber    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_image.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/05 10:17:56 by sarobber          #+#    #+#             */
+/*   Updated: 2019/02/05 17:36:35 by sarobber         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/fdf.h"
 
@@ -50,6 +50,7 @@ void	drawline(t_point_2d point1, t_point_2d point2, t_map **map)
 	}
 	while (index < k)
 	{
+		get_color(pos, point1, point2);
 		new_pos(&pos, point1, step, index);
 		if ((pos.x >= 0 && pos.x <= WIDTH) && (pos.y >= 0 && pos.y <= LENGTH))
 			(*map)->data[(int)pos.y * LENGTH + (int)pos.x] = 0XFFFFFF;
@@ -68,6 +69,7 @@ void create_image(t_map **map)
 	proj_1 = new_point(0, 0);
 	index = init_point(0, 0, 0);
 	index_1 = init_point(0, 0, 0);
+	init_image((*map)->mlx_ptr, map);
 	while (index.y < (*map)->len_y)
 	{
 		index.x = 0;
@@ -81,17 +83,14 @@ void create_image(t_map **map)
 				index_1 = init_point(index.x + 1, index.y, (*map)->grille[index.y][index.x + 1]);
 				proj_1.x = ((index_1.x * (*map)->vector_x.x * (*map)->scale) + (index_1.y * (*map)->vector_y.x * (*map)->scale) + (index_1.z * (*map)->vector_z.x * (*map)->scale)) + (*map)->new_point_win.x;
 				proj_1.y = ((index_1.x * (*map)->vector_x.y * (*map)->scale) + (index_1.y * (*map)->vector_y.y * (*map)->scale) + (index_1.z * (*map)->vector_z.y * (*map)->scale)) + (*map)->new_point_win.y;
-				//mlx_pixel_put((*map)->mlx_ptr, (*map)->win_ptr, proj_1.x, proj_1.y, 0xFFFFFF);
 				drawline(proj, proj_1, &(*map));
 			}
-
 			if ((index.y + 1) < (*map)->len_y)
 			{
 				index_1 = init_point(index.x, index.y + 1, (*map)->grille[index.y + 1][index.x]);
 				proj_1.x = ((index_1.x * (*map)->vector_x.x * (*map)->scale) + (index_1.y * (*map)->vector_y.x * (*map)->scale) + (index_1.z * (*map)->vector_z.x * (*map)->scale)) + (*map)->new_point_win.x;
 				proj_1.y = ((index_1.x * (*map)->vector_x.y * (*map)->scale) + (index_1.y * (*map)->vector_y.y * (*map)->scale) + (index_1.z * (*map)->vector_z.y * (*map)->scale)) + (*map)->new_point_win.y;
 				drawline(proj, proj_1, &(*map));
-				//mlx_pixel_put((*map)->mlx_ptr, (*map)->win_ptr, proj_1.x, proj_1.y, 0xFFFFFF);
 			}
 			index.x++;
 		}

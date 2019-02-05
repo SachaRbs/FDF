@@ -1,15 +1,15 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: sarobber <sarobber@student.le-101.fr>      +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/01/08 14:30:43 by sarobber     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/21 13:51:01 by sarobber    ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/08 14:30:43 by sarobber          #+#    #+#              #
+#    Updated: 2019/02/05 17:11:23 by sarobber         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
+
 
 NAME = fdf
 
@@ -24,7 +24,9 @@ SRC_NAME =	main.c					\
 			init.c					\
 			utilities.c				\
 			read.c					\
-			create_image.c
+			create_image.c			\
+			events.c				\
+			color.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

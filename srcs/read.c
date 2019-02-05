@@ -1,38 +1,18 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   read.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: sarobber <sarobber@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/20 16:08:52 by sarobber     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/21 15:47:17 by sarobber    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/05 10:18:20 by sarobber          #+#    #+#             */
+/*   Updated: 2019/02/05 14:10:07 by sarobber         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "../includes/fdf.h"
-
-void    print(int **map)
-{
-    int x;
-    int y;
-
-    x = 0;
-    y = 0;
-    while (y < 11)
-    {
-        x = 0;
-        while (x < 19)
-        {
-            printf("%-4d", map[y][x]);
-            x++;
-
-        }
-        printf("\n");
-        y++;
-    }
-}
 
 int	ft_count_words_sep(char const *s, char c)
 {
@@ -122,7 +102,6 @@ t_map		*ft_fill_map(int fd, t_map *map)
 		free(line);
 		y++;
 	}
-	print(map->grille);
 	return (map);
 }
 

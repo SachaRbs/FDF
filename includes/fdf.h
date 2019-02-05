@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   fdf.h                                            .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: sarobber <sarobber@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/08 14:38:51 by sarobber     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/25 17:50:33 by sarobber    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/08 14:38:51 by sarobber          #+#    #+#             */
+/*   Updated: 2019/02/05 17:12:55 by sarobber         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FDF_H
 # define FDF_H
@@ -30,8 +30,9 @@ typedef struct      s_point_3d
 
 typedef struct		s_point_2d
 {
-	float x;
-	float y;
+	float 	x;
+	float 	y;
+	int		color;
 }					t_point_2d;
 
 typedef struct 		s_vector
@@ -51,7 +52,7 @@ typedef struct		s_map
 	t_point_2d 			new_point_win;
 	void				*mlx_ptr;
 	void				*win_ptr;
-	int					scale;
+	float				scale;
 	int					len_x;
 	int					len_y;
 	int					x;
@@ -66,4 +67,7 @@ t_point_3d     	init_point(int x, int y, int z);
 t_map			*init_map();
 t_vector		create_vector(float x, float y);
 void			init_image(void *mlx_ptr, t_map **map);
+int 			key_press(int keycode, void *param);
+int				key_hook(int keycode, t_map *map);
+int 			get_color(t_point_2d current, t_point_2d start, t_point_2d end);
 #endif

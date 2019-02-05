@@ -1,17 +1,24 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: sarobber <sarobber@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/08 14:22:21 by sarobber     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/25 18:05:56 by sarobber    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/05 10:18:11 by sarobber          #+#    #+#             */
+/*   Updated: 2019/02/05 14:44:40 by sarobber         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+int		expose_hook(t_map *map)
+{
+	if (map == NULL)
+		;
+	return (0);
+}
+
 
 int     main(int ac, char **av)
 {
@@ -28,6 +35,13 @@ int     main(int ac, char **av)
 	ft_create_map(av[1], map);
 	init_image(map->mlx_ptr, &map);
     create_image(&map);
+    mlx_expose_hook(map->win_ptr, expose_hook, map);
+	mlx_key_hook(map->win_ptr, key_hook, map);
+   // mlx_hook(map->win_ptr, 2, 1, key_press, map);
+   // mlx_hook(map->win_ptr, 3, keyPressMas, key_press, map);
+   // mlx_hook(map->win_ptr, 4, keyPressMas, key_press, map);
+   // mlx_hook(map->win_ptr, 5, keyPressMas, key_press, map);
+   // mlx_hook(map->win_ptr, 6, keyPressMas, key_press, map);
     mlx_loop(map->mlx_ptr);
     return (0);
 }
