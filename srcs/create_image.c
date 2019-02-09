@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:17:56 by sarobber          #+#    #+#             */
-/*   Updated: 2019/02/05 17:36:35 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/02/09 15:02:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,29 @@ void	drawline(t_point_2d point1, t_point_2d point2, t_map **map)
 	t_point_2d	tmp;
 	t_point_2d	step;
 	t_point_2d	pos;
+
 	int 		k;
 	int 		index ;
-
 	index = 0;
 	get_step(point1, point2, &step);
 	tmp = new_point(ABS(step.x), ABS(step.y));
-    if (tmp.x > tmp.y)
-    {
-        k = ABS(step.x);
-        step.y /= ABS(step.x);
-        step.x /= ABS(step.x);
-    }
-    else
-    {
-        k = ABS(step.y);
-        step.x /= ABS(step.y);
-        step.y /= ABS(step.y);
+	if (tmp.x > tmp.y)
+	{
+		k = ABS(step.x);
+		step.y /= ABS(step.x);
+		step.x /= ABS(step.x);
+	}
+	else
+	{
+		k = ABS(step.y);
+		step.x /= ABS(step.y);
+		step.y /= ABS(step.y);
 	}
 	while (index < k)
 	{
-		get_color(pos, point1, point2);
 		new_pos(&pos, point1, step, index);
-		if ((pos.x >= 0 && pos.x <= WIDTH) && (pos.y >= 0 && pos.y <= LENGTH))
-			(*map)->data[(int)pos.y * LENGTH + (int)pos.x] = 0XFFFFFF;
+		if ((pos.x >= 0 && pos.x < WIDTH) && (pos.y >= 0 && pos.y < LENGTH))
+			(*map)->data[(int)pos.y * LENGTH + (int)pos.x] = (*map)->color_n;
 		index++;
 	}
 }
@@ -65,10 +64,10 @@ void create_image(t_map **map)
 	t_point_3d index;
 	t_point_3d index_1;
 
-	proj = new_point(0, 0);
-	proj_1 = new_point(0, 0);
 	index = init_point(0, 0, 0);
 	index_1 = init_point(0, 0, 0);
+	free((*map)->pointeur_image);
+	free((*map)->data);
 	init_image((*map)->mlx_ptr, map);
 	while (index.y < (*map)->len_y)
 	{
@@ -97,4 +96,5 @@ void create_image(t_map **map)
 		index.y++;
 	}
 	mlx_put_image_to_window((*map)->mlx_ptr, (*map)->win_ptr, (*map)->pointeur_image, 0, 0);
+	info(*map);
 }

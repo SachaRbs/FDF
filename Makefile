@@ -6,7 +6,7 @@
 #    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 14:30:43 by sarobber          #+#    #+#              #
-#    Updated: 2019/02/05 17:11:23 by sarobber         ###   ########.fr        #
+#    Updated: 2019/02/08 15:55:00 by sarobber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_NAME =	main.c					\
 			read.c					\
 			create_image.c			\
 			events.c				\
-			color.c
+			color.c					\
+			info.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

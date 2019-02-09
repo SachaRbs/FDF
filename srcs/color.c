@@ -5,43 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 16:50:32 by sarobber          #+#    #+#             */
-/*   Updated: 2019/02/05 17:13:39 by sarobber         ###   ########.fr       */
+/*   Created: 2019/02/08 14:56:29 by sarobber          #+#    #+#             */
+/*   Updated: 2019/02/09 15:02:57 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-double percent(int start, int end, int current)
+unsigned int		convert_color(t_color *color)
 {
-    double placement;
-    double distance;
+	unsigned int	ret;
 
-    placement = current - start;
-    distance = end - start;
-    return ((distance == 0) ? 1.0 : (placement / distance));
+	ret = (color->r << 16) + (color->g << 8) + color->b;
+	return (ret);
 }
 
-int get_light(int start, int end, double percentage)
+unsigned int		get_color(int keycode, t_map **map)
 {
-    return ((int)((1 - percentage) * start + percentage * end));
-}
-
-int get_color(t_point_2d current, t_point_2d start, t_point_2d end)
-{
-    int     red;
-    int     green;
-    int     blue;
-    double  percentage;
-
-    if (current.color == end.color)
-        return (current.color);
-    //if (delta.x > delta.y)
-    //    percentage = percent(start.x, end.x, current.x);
-    //else
-        percentage = percent(start.y, end.y, current.y);
-    red = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percentage);
-    green = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percentage);
-    blue = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
-    return ((red << 16) | (green << 8) | blue);
+	if (keycode == 86)
+		if ((*map)->color_s->r + 10 <= 255)
+			(*map)->color_s->r += 10;
+	if (keycode == 83)
+		if ((*map)->color_s->r - 10 >= 0)
+			(*map)->color_s->r -= 10;
+	if (keycode == 87)
+		if ((*map)->color_s->g + 10 <= 255)
+			(*map)->color_s->g += 10;
+	if (keycode == 84)
+		if ((*map)->color_s->g - 10 >= 0)
+			(*map)->color_s->g -= 10;
+	if (keycode == 88)
+		if ((*map)->color_s->b + 10 <= 255)
+			(*map)->color_s->b += 10;
+	if (keycode == 85)
+		if ((*map)->color_s->b - 10 >= 0)
+			(*map)->color_s->b -= 10;
+	return (convert_color((*map)->color_s));
 }

@@ -6,15 +6,13 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:18:20 by sarobber          #+#    #+#             */
-/*   Updated: 2019/02/05 14:10:07 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:52:42 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../includes/fdf.h"
 
-int	ft_count_words_sep(char const *s, char c)
+int				ft_count_words_sep(char const *s, char c)
 {
 	int	count;
 	int	sep;
@@ -35,7 +33,7 @@ int	ft_count_words_sep(char const *s, char c)
 	return (count);
 }
 
-int		**ft_tabnew_two(size_t x, size_t y)
+int				**ft_tabnew_two(size_t x, size_t y)
 {
 	size_t	i;
 	int		**tab;
@@ -54,7 +52,7 @@ int		**ft_tabnew_two(size_t x, size_t y)
 	return (tab);
 }
 
-int		ft_count(char *argv, t_map *map)
+int				ft_count(char *argv, t_map *map)
 {
 	char	*line;
 	int		fd;
@@ -77,12 +75,12 @@ int		ft_count(char *argv, t_map *map)
 	return (0);
 }
 
-t_map		*ft_fill_map(int fd, t_map *map)
+t_map			*ft_fill_map(int fd, t_map *map)
 {
 	char	*line;
 	char	**split_line;
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -105,7 +103,7 @@ t_map		*ft_fill_map(int fd, t_map *map)
 	return (map);
 }
 
-int		ft_create_map(char *argv, t_map *map)
+int				ft_create_map(char *argv, t_map *map)
 {
 	int		fd;
 
